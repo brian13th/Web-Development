@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <canvas id="canvas" width="200" height="333" style="border:1px solid #000;"></canvas>
+    <script>
+      const canvas = document.getElementById('canvas');
+      const context = canvas.getContext('2d');
+
+      let x=50;
+      let y=50;
+
+      let xChange = 1;
+      let yChange = 1;
+
+      class Blob {
+        constructor(color, size){
+          this.x = Math.random()*canvas.width;
+          this.y = Math.random()*canvas.height;
+          this.color = color;
+          this. size = size;
+          this.xChange = 1;
+          this.yChange = 1;
+        }
+
+        move(){
+          if (this.x > canvas.width || x < 0) {
+            this.xChange *= -1;
+          }
+
+          if (this.y > canvas.height || y < 0) {
+            this.yChange *= -1;
+          }
+        }
+
+        draw(){
+          context.beginPath();
+          context.arc(this.x,this.y,this.size,0,2*Math.PI);
+          context.fillStyle = this.color;
+          context.fill();
+          context.stroke()
+        }
+      }
+
+      const newBlob = new Blob('blue', 50);
+      newBlob.draw();
+
+
+
+
+
+
+      // function blob(xloc,yloc,size,color) {
+      //   context.clearRect(0,0,canvas.width, canvas.height);
+      //   context.beginPath();
+      //   context.arc(xloc,yloc,size,0,2*Math.PI);
+      //   context.fillStyle = color;
+      //   context.fill();
+      //   context.stroke();
+      //
+      //   if (x > canvas.width || x < 0) {
+      //     xChange *= -1;
+      //   }
+      //
+      //   if (y > canvas.height || y < 0) {
+      //     yChange *= -1;
+      //   }
+      //   x += xChange;
+      //   y += yChange;
+      //
+      // }
+      // setInterval(function(){
+      //   blob(x,y,25,"green");
+      // })
+
+
+    </script>
+  </body>
+</html>
