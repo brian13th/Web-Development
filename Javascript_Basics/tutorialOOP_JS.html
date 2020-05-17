@@ -46,11 +46,12 @@
       }
 
       const newBlob = new Blob('blue', 50);
-      newBlob.draw();
+      for (let i = 0; i<10; i++){
 
-
-
-
+        newBlob.draw();
+        this.x = this.x + i;
+        this.y = this.y + i;
+      }
 
 
       // function blob(xloc,yloc,size,color) {
