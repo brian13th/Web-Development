@@ -13,15 +13,30 @@
 το αποτέλεσμα που φαίνεται στην παρουσίαση. ιδιαίτερη αναφορά γίνεται ώστε το χρώμα 
 να οριστεί με βάση τα χρώματα που ορίζονται από τις μεταβλητές CSS. */
 
-* {
-    
+body {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
+heading, input, button {
+    font-size: 1.2em;
+}
+
+button {
+    background-color: var(--btn-color);
+    color: var(--btn-text);
+    border-radius: 5%
+;}
 #restart {
     display: none;
 }
 
 #message {
-    background-color: red;
-    color: white;
+    background-color: var(--msg-wrong-color);
+    color: var(--msg-text);
+    text-align: center;
+}
+
+#low-high {
+    color: var(--low-high-color);
 }

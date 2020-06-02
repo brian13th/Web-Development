@@ -5,6 +5,7 @@ const message = document.querySelector("#message");
 const lowHigh = document.querySelector("#low-high");
 const checkButton = document.querySelector("#check");
 const restartButton = document.querySelector("#restart");
+const input = document.querySelector("input")
 
 // 2. να ορίσετε τους σχετικούς χειριστές συμβάντων
 
@@ -21,7 +22,9 @@ function newRandom(){
 /* 3. συνάρτηση που βρίσκει ένα τυχαίο αριθμό μεταξύ 1 και 100 
  και τον εκχωρεί στη μεταβλητή theGuess */
  theGuess = Math.floor(Math.random() * 100) + 1;
- console.log("The number to guess is: ",theGuess);
+ 
+//  uncheck the below code for debugging
+//  console.log("The number to guess is: ",theGuess);
 }
 
 function checkKey(e){
@@ -41,11 +44,18 @@ function checkGuess(){
 κατάλληλες ενέργειες για εμφάνιση του πλήκτρου 'restart' και την εξαφάνιση του πλήκτρου 'check'
 σε περίπτωση ολοκλήρωσης του παιχνιδιού. */
     let newValue = newGuess.value;
-    console.log(previousGuesses)
-    if (processGuess(newValue) === "win"){
+    let outcome = processGuess(newValue);
+
+    if ( outcome === "win"){
         restartButton.style.display = "block";
         checkButton.style.display = "none";
+        input.readOnly = true;
+    } else if ( outcome === "lost"){
+        restartButton.style.display = "block";
+        checkButton.style.display = "none";
+        input.readOnly = true;
     }
+    newGuess.value = "";
 
 
 }
@@ -59,11 +69,11 @@ function processGuess(newValue){
  Σε περίπτωση που το παιχνίδι δεν έχει ακόμα τελειώσει, η συνάρτηση μπορεί είτε να μην επιστρέφει κάποια ιδιαίτερη τιμή,
  είτε να επιστρέφει κάποια τιμή της επιλογής σας */
     newValue = parseInt(newValue);
-    if (newValue === theGuess && previousGuesses.length < 10){
-        message.style.backgroundColor = "green";
+    if (newValue === theGuess){
+        message.style.setProperty("background-color", "var(--msg-win-color)");
         message.textContent = "Μπράβο το βρήκες!"
         return "win";
-    } else if (isNaN(newValue && previousGuesses.length < 10)){
+    } else if (isNaN(newValue) && previousGuesses.length < 10){
         message.textContent = "Δώσε αριθμό!";
     } else if (newValue > theGuess && previousGuesses.length < 10){
         message.textContent = "Λάθος, το ξεπέρασες";
@@ -71,6 +81,13 @@ function processGuess(newValue){
     } else if (newValue < theGuess && previousGuesses.length < 10){
         message.textContent = "Λάθος, είσαι πιο χαμηλά";
         previousGuesses.push(newValue);
+    }
+    if (previousGuesses.length>0){
+        lowHigh.textContent = `Προηγούμενες προσπάθειες: ${previousGuesses.join(" ")}`;
+    }
+    if (previousGuesses.length >= 10){
+        message.textContent = "Τέλος παιχνιδιού, έχασες!";
+        return "lost";
     }
 }
 function restart(){
@@ -81,6 +98,8 @@ function restart(){
     lowHigh.textContent = "";
     checkButton.style.display = "inline";
     restartButton.style.display = "none";
+    input.readOnly = false;
+    message.style.backgroundColor = "red";
     newRandom();
 }
 
