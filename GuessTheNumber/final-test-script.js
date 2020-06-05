@@ -48,18 +48,22 @@ function checkGuess(){
     let newValue = newGuess.value;
     let outcome = processGuess(newValue);
 
+    newGuess.value = "";
     if ( outcome === "win"){
         restartButton.style.display = "block";
         checkButton.style.display = "none";
         input.readOnly = true;
         newGuess.blur();
+        restartButton.focus();
     } else if ( outcome === "lost"){
         restartButton.style.display = "block";
         checkButton.style.display = "none";
         input.readOnly = true;
+        newGuess.blur();
+        restartButton.focus();
         
     }
-    newGuess.value = "";
+    
 
 
 }
