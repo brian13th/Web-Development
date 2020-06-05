@@ -25,8 +25,19 @@ heading, input, button {
 button {
     background-color: var(--btn-color);
     color: var(--btn-text);
-    border-radius: 5%
-;}
+    border-radius: 5%;
+}
+
+br {
+    display: block;
+    content: "";
+    margin-top: 0.21em;
+}
+
+#instructions, #guess {
+    margin-left: 1em;
+}
+
 #restart {
     display: none;
 }
@@ -35,8 +46,11 @@ button {
     background-color: var(--msg-wrong-color);
     color: var(--msg-text);
     text-align: center;
+    margin-left: 1em;
+    margin-right: -1em;
 }
 
 #low-high {
     color: var(--low-high-color);
+    margin-left: 1em;
 }
