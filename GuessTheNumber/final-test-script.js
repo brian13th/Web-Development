@@ -14,6 +14,7 @@ let theGuess;
 window.onload = newRandom();
 newGuess.focus();
 
+
 checkButton.addEventListener('click', checkGuess)
 newGuess.addEventListener('keypress', checkKey)
 restartButton.addEventListener('click', restart)
@@ -22,6 +23,7 @@ function newRandom(){
 /* 3. συνάρτηση που βρίσκει ένα τυχαίο αριθμό μεταξύ 1 και 100 
  και τον εκχωρεί στη μεταβλητή theGuess */
  theGuess = Math.floor(Math.random() * 100) + 1;
+ console.log(theGuess);
  
 //  uncheck the below code for debugging
 //  console.log("The number to guess is: ",theGuess);
@@ -50,10 +52,12 @@ function checkGuess(){
         restartButton.style.display = "block";
         checkButton.style.display = "none";
         input.readOnly = true;
+        newGuess.blur();
     } else if ( outcome === "lost"){
         restartButton.style.display = "block";
         checkButton.style.display = "none";
         input.readOnly = true;
+        
     }
     newGuess.value = "";
 
@@ -100,6 +104,7 @@ function restart(){
     restartButton.style.display = "none";
     input.readOnly = false;
     message.style.backgroundColor = "red";
+    newGuess.focus();
     newRandom();
 }
 
