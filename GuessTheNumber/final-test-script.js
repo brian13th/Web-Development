@@ -23,7 +23,6 @@ function newRandom(){
 /* 3. συνάρτηση που βρίσκει ένα τυχαίο αριθμό μεταξύ 1 και 100 
  και τον εκχωρεί στη μεταβλητή theGuess */
  theGuess = Math.floor(Math.random() * 100) + 1;
- console.log(theGuess);
  
 //  uncheck the below code for debugging
 //  console.log("The number to guess is: ",theGuess);
@@ -90,7 +89,7 @@ function processGuess(newValue){
         message.textContent = "Λάθος, είσαι πιο χαμηλά";
         previousGuesses.push(newValue);
     }
-    if (previousGuesses.length>0){
+    if (previousGuesses.length > 0){
         lowHigh.textContent = `Προηγούμενες προσπάθειες: ${previousGuesses.join(" ")}`;
     }
     if (previousGuesses.length >= 10){
